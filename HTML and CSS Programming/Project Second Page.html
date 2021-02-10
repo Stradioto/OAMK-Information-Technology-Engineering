@@ -44,9 +44,9 @@
 
             <div class="outbox">
                 <div class="descriptionbox">
-                    <img src="sdetails.jpeg" class="imgD"><br>
+                    <img src="" class="imgD"><br>
                     <div class="technical">
-                        <strong>Only 149 euros</strong><br>
+                        <strong></strong><br>
                         <strong>Material & care:</strong>
                         <div>
                             Upper material: Leather and textile<br>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="buttons">
                     <button><a href="Project Third Page.html">BUY</a></button>
-                    <button><a href="">Add kart</a></button>
+                    <button onClick="AddKart()"><a href="">Add kart</a></button>
                 </div>
             </div>  
             <div class="outbox">
@@ -117,5 +117,33 @@
             <p>Santeri Vartto</p>
             <p>Kweche Ebechue</p>
         </div>
+
+        
     </body>
+    
+    <script>
+
+        let item = localStorage.getItem('itemVisualized'); //Receive item selected.
+
+        let imageD = document.querySelector('.imgD');
+        imageD.src = JSON.parse(item).photo;
+
+        let value = document.querySelector('.technical').firstElementChild;
+        value.innerText = "Only " + JSON.parse(item).euros + "," + JSON.parse(item).cents + " euros.";
+
+        function AddKart() {
+            
+            currentyShoppingCart = JSON.parse(localStorage.getItem('shoppingCart')); //load shopping cart items
+            if (currentyShoppingCart === null) { //Create array if dosent exists(necessary for the first item)
+                currentyShoppingCart = [];
+            }
+            
+            currentyShoppingCart.push(JSON.parse(item));   //Add new item to array
+            
+            
+            localStorage.setItem('shoppingCart',JSON.stringify(currentyShoppingCart));  //store shopping cart items.         
+        }
+
+
+    </script>
 </html> 
